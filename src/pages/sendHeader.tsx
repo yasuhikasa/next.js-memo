@@ -1,4 +1,3 @@
-// pages/sendHeader.js
 import axios from 'axios';
 
 export default function SendHeader() {
