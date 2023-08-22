@@ -4,7 +4,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const customHeader = req.headers['app-type'];
 
   if (customHeader === 'setting') {
-    res.status(200).json({ redirectPath: '/adminPage' });
+    res.status(200).json({ redirectPath: '/settingPage' });
   } else if (customHeader === 'user') {
     res.status(200).json({ redirectPath: '/userPage' });
   } else {
