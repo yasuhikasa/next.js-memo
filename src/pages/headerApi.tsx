@@ -39,35 +39,52 @@
 
 // export default IndexPage;
 
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import type { GetServerSideProps } from 'next';
+import { GetServerSidePropsContext } from 'next';
 
 type Props = {
   customHeader: string | null;
+  error: string | null;
 };
 
-const HomePage: React.FC<Props> = ({ customHeader }) => {
+const IndexPage: React.FC<Props> = ({ customHeader, error }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (customHeader === 'user') {
+    if (!customHeader) {
+      console.error(error);
+    } else if (customHeader === 'user') {
       router.push('/userPage');
     } else if (customHeader === 'setting') {
       router.push('/settingPage');
+    } else {
+      router.push('/guestPage');
     }
   }, [customHeader]);
 
   return <div>Loading...</div>;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ req }) => {
-  const customHeader = req.headers['App-Type'] as string | undefined;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const customHeader = context.req.headers['app-type'] || null;
+
+  if (!customHeader) {
+    return {
+      props: {
+        customHeader: null,
+        error: 'App-Type header is missing',
+      },
+    };
+  }
+
   return {
     props: {
-      customHeader: customHeader || null, // `undefined`の場合に`null`を返すように変更
+      customHeader,
+      error: null,
     },
   };
-};
+}
 
-export default HomePage;
+export default IndexPage;
