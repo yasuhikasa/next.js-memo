@@ -5,6 +5,7 @@ const Home: React.FC = () => {
   const [requestType, setRequestType] = useState<string>('getAllAirconPropScope');
   const [sourceModule, setSourceModule] = useState<string>('ApiServer');
   const [requestId, setRequestId] = useState<number>(1234567890);
+  const [responseData, setResponseData] = useState<any>(null); // レスポンスデータを保存するステート
 
   const fetchData = async () => {
     const requestBody = {
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
     try {
       const res = await axios.post('/api/airConditioner/properties/def', requestBody);
       console.log(res.data);
+      setResponseData(res.data); // レスポンスデータをステートに保存
     } catch (error) {
       console.error(error);
     }
@@ -38,6 +40,8 @@ const Home: React.FC = () => {
         </label>
       </form>
       <button onClick={fetchData}>Fetch Aircon Data</button>
+      {/* レスポンスデータの表示 */}
+      {responseData && <pre>{JSON.stringify(responseData, null, 2)}</pre>}
     </div>
   );
 }
