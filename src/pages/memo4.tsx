@@ -1,7 +1,8 @@
 // utils/screenFit.js
 export function applyScreenFit() {
   const ua = navigator.userAgent.toLowerCase();
-  const style = document.getElementsByClassName('wrap')[0].style;
+  const style = (document.getElementsByClassName('wrap')[0] as HTMLElement).style;
+
   let initialHeight = window.innerHeight;
   let isSoftKeyboardShown = false;
 
