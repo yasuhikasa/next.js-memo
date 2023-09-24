@@ -1,10 +1,9 @@
+// 修正３
 // util/screenFit.js
 
 const screenFit = () => {
   // SSR(Server Side Rendering)の環境下でも動作するようにwindowオブジェクトの存在を確認
   if (typeof window !== 'undefined') {
-    // 余った領域を黒で塗りつぶす
-    document.body.style.backgroundColor = 'black';
 
     let lastWindowHeight = window.innerHeight;  // 最後に記録されたウィンドウの高さを保存
 
@@ -36,6 +35,8 @@ const screenFit = () => {
         scaleValue = window.innerHeight / 600;  // 縦をフィットさせる
         marginLeft = (window.innerWidth - (800 * scaleValue)) / 2;  // 左マージンを計算
         alignment = 'center';  // 中央揃え
+        // 余った領域を黒で塗りつぶす
+        document.body.style.backgroundColor = 'black';
       } else {
         alignment = 'center';  // 中央揃え
       }
@@ -48,17 +49,26 @@ const screenFit = () => {
     };
 
     const handleResize = () => {
-      // ウィンドウの高さが大きく変わった（ソフトキーボードの表示/非表示）時に動作
-      if (window.innerHeight < lastWindowHeight - 100) {
-        // スタイルをリセット
-        document.body.style.transform = '';
-        document.body.style.marginTop = '';
-        document.body.style.marginLeft = '';
-      } else {
-        // ソフトキーボードが非表示になった場合、再度画面をフィットさせる
-        fitScreen();
+      const userAgent = navigator.userAgent.toLowerCase();  // ユーザーエージェントを取得し、小文字に変換
+
+      // ユーザーエージェントが android, ipad, または iphone を含む場合のみ、以下の処理を実行
+      if (
+        userAgent.includes('android') ||
+        userAgent.includes('ipad') ||
+        userAgent.includes('iphone')
+      ) {
+        // ウィンドウの高さが大きく変わった（ソフトキーボードの表示/非表示）時に動作
+        if (window.innerHeight < lastWindowHeight - 100) {
+            // スタイルをリセット
+            document.body.style.transform = '';
+            document.body.style.marginTop = '';
+            document.body.style.marginLeft = '';
+        } else {
+            // ソフトキーボードが非表示になった場合、再度画面をフィットさせる
+            fitScreen();
+        }
+        lastWindowHeight = window.innerHeight;  // 最後に記録されたウィンドウの高さを更新
       }
-      lastWindowHeight = window.innerHeight;  // 最後に記録されたウィンドウの高さを更新
     };
 
     fitScreen();  // 初期ロード時に画面をフィットさせる
@@ -69,6 +79,78 @@ const screenFit = () => {
 export default screenFit;
 
 
+// 修正２
+// util/screenFit.js
+
+// const screenFit = () => {
+//   // SSR(Server Side Rendering)の環境下でも動作するようにwindowオブジェクトの存在を確認
+//   if (typeof window !== 'undefined') {
+
+//     let lastWindowHeight = window.innerHeight;  // 最後に記録されたウィンドウの高さを保存
+
+//     const fitScreen = () => {
+//       const userAgent = navigator.userAgent.toLowerCase();  // ユーザーエージェントを取得し、小文字に変換
+//       let scaleValue;  // スケール値を保存する変数
+//       let alignment;  // アラインメントを保存する変数
+//       let marginTop = 0;  // 上マージンを保存する変数
+//       let marginLeft = 0;  // 左マージンを保存する変数
+
+//       // ユーザーエージェントをチェックして適切なスケール値とマージンを計算
+//       if (userAgent.includes('aiseg2') || userAgent.includes('homectrl')) {
+//         const aspectRatio = window.innerWidth / window.innerHeight;  // アスペクト比を計算
+//         if (aspectRatio > (1024 / 600)) {
+//           scaleValue = window.innerHeight / 600;  // 縦をフィットさせる
+//           marginLeft = (window.innerWidth - (1024 * scaleValue)) / 2;  // 左マージンを計算
+//         } else {
+//           scaleValue = window.innerWidth / 1024;  // 横をフィットさせる
+//           marginTop = (window.innerHeight - (600 * scaleValue)) / 2;  // 上マージンを計算
+//         }
+//         alignment = 'left';  // 左寄せ
+//       } else if (userAgent.includes('pewdmshomeviewer') || userAgent.includes('doorctrl')) {
+//         scaleValue = 1;  // 解像度が基本解像度と同じであるため、スケーリングは不要
+//       } else if (
+//         userAgent.includes('android') ||
+//         userAgent.includes('ipad') ||
+//         userAgent.includes('iphone')
+//       ) {
+//         scaleValue = window.innerHeight / 600;  // 縦をフィットさせる
+//         marginLeft = (window.innerWidth - (800 * scaleValue)) / 2;  // 左マージンを計算
+//         alignment = 'center';  // 中央揃え
+//         // 余った領域を黒で塗りつぶす
+//         document.body.style.backgroundColor = 'black';
+//       } else {
+//         alignment = 'center';  // 中央揃え
+//       }
+
+//       // body要素のスケール、変形原点、およびマージンを設定
+//       document.body.style.transform = `scale(${scaleValue})`;
+//       document.body.style.transformOrigin = alignment === 'left' ? 'top left' : 'top center';
+//       document.body.style.marginTop = `${marginTop}px`;
+//       document.body.style.marginLeft = `${marginLeft}px`;
+//     };
+
+//     const handleResize = () => {
+//       // ウィンドウの高さが大きく変わった（ソフトキーボードの表示/非表示）時に動作
+//       if (window.innerHeight < lastWindowHeight - 100) {
+//         // スタイルをリセット
+//         document.body.style.transform = '';
+//         document.body.style.marginTop = '';
+//         document.body.style.marginLeft = '';
+//       } else {
+//         // ソフトキーボードが非表示になった場合、再度画面をフィットさせる
+//         fitScreen();
+//       }
+//       lastWindowHeight = window.innerHeight;  // 最後に記録されたウィンドウの高さを更新
+//     };
+
+//     fitScreen();  // 初期ロード時に画面をフィットさせる
+//     window.addEventListener('resize', handleResize);  // resizeイベントにリスナーを追加
+//   }
+// };
+
+// export default screenFit;
+
+// 修正１
 // // util/screenFit.js
 
 // const screenFit = () => {
