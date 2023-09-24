@@ -73,6 +73,24 @@ export function applyScreenFit() {
 }
 
 
+// // pages/index.tsx
+
+// import { useEffect } from 'react';
+// import { applyScreenFit } from '../utils/deviceUtils';
+
+// export default function Home() {
+//   useEffect(() => {
+//     applyScreenFit();
+//   }, []);
+
+//   return (
+//     <div className="wrap">
+//       <div className="content">
+//         This is a test page.
+//       </div>
+//     </div>
+//   );
+// }
 
 
 
