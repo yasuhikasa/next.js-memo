@@ -8,7 +8,7 @@ interface DrawScreen {
   tablet?: boolean;
   dummy_div_for_safari?: HTMLDivElement;
   initialHeight?: number;
-  tv: (window_h: number, window_w: number) => void;
+  tv?: (window_h: number, window_w: number) => void;
   sp: (window_h: number, window_w: number, firstdraw?: boolean) => void;
   [key: string]: any;  // 他のプロパティがある場合に備えて
 }
@@ -23,26 +23,6 @@ export const drawScreen:DrawScreen = {
   
   // ソフトキーボード表示/非表示
   softkeyboard: false,
-  
-  // TVの縦フィット、横フィット対応
-  "tv": function(window_h, window_w) {
-    // 表示スケール算出
-    const vscale_h = window_h / drawScreen.view_h;
-    const vscale_w = window_w / drawScreen.view_w;
-  
-    let vscale = (vscale_h > vscale_w) ? vscale_w : vscale_h;
-  
-    // 小数点3ケタまでで四捨五入（borderの背景画像の表示がおかしくなるため）
-    vscale = Math.round(vscale * 1000) / 1000;
-  
-    const style = (document.getElementsByClassName('wrap')[0] as HTMLElement).style;
-    style.webkitTransformOrigin = '50% 0';
-    style.MozTransformOrigin = '50% 0';
-    style.transformOrigin = '50% 0';
-    style.webkitTransform = 'scale(' + vscale + ')';
-    style.MozTransform = 'scale(' + vscale + ')';
-    style.transform = 'scale(' + vscale + ')';
-  },
   
   // スマートフォンの縦フィット、横フィット対応
   "sp": function(window_h, window_w, firstdraw) {
@@ -212,25 +192,12 @@ export const drawScreen:DrawScreen = {
   function getDevice() {
   let dn;
   const agent = navigator.userAgent;
-  if (agent.match(/Viera.*Firefox|Firefox.*Viera/)) {
-  // 4K Viera
-  dn = "tv";
-  } else if (agent.match(/HomeCTRL/)) {
+  if (agent.match(/HomeCTRL/)) {
   // 住宅機器コントローラ
   dn = "hc";
-  } else if (agent.match(/JM_MON/)) {
-  // 住まいるサポ
-  dn = "nf";
-  } else if (agent.match(/HM_MON/)) {
-  // HEMSモニター
-  dn = "nf";
   } else if (agent.match(/Android/)) {
   // Android
   dn = "sp";
-  if (!agent.match(/Mobile/)) {
-  // タブレット
-  drawScreen.tablet = true;
-  }
   } else if (agent.match(/iPhone|iPad|iPod/)) {
   // iOS
   dn = "sp";
@@ -239,13 +206,6 @@ export const drawScreen:DrawScreen = {
   // タブレット
   drawScreen.tablet = true;
   }
-  if (!agent.match(/CriOS|FxiOS/)) {
-  // Safari (iOS で Chrome, Firefox 以外を Safari とみなす)
-  drawScreen.safari = true;
-  }
-  } else if (agent.match(/NetFront/)) {
-  // NetFront
-  dn = "nf";
   } else if (agent.match(/AiSEG/)) {
   // AiSEG
   dn = "aiseg";
