@@ -176,15 +176,18 @@ export const drawScreen:DrawScreen = {
       }
     }, false);
   } else if (dn === "aiseg") { // 自モニタ画面対応
-    //input, textarea のドラッグ禁止(フォーカスのみ付与)
-    document.addEventListener("mousedown", function(e) {
-      const target = e.target as HTMLElement;
-      if (target && (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT')) {
-        e.preventDefault();
-        target.focus();
-        if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
-          target.setSelectionRange(0,0);}
-        }})
+        //input, textarea のドラッグ禁止(フォーカスのみ付与)
+        document.addEventListener("mousedown", function(e) {
+          if (e.target instanceof HTMLElement) {
+            var name = e.target.tagName;
+            if (name && name.match(/^TEXTAREA$|^INPUT$/)) {
+              e.preventDefault();
+              const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+              target.focus();
+              target.setSelectionRange(0,0);
+            }
+          }
+        })
   }
   });
   
