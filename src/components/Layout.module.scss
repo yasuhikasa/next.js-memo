@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6;
+  width: 100vw;
+  }
+
+  .page {
+  position: absolute;
+  width: 800px;
+  height: 480px;
+  background-color: #f3f4f6;
+  box-sizing: border-box;
+  overflow: hidden;
+  }
