@@ -151,5 +151,67 @@
 //   }
 // }
 
+// import { ReactNode, useLayoutEffect, useRef, CSSProperties, useEffect } from "react"
+// import styles from "./Layout.module.scss"
+// import * as def from "@/definitions/def"
+
+// type LayoutProps = {
+//   children?: ReactNode // 画面表示コンテンツ
+// }
+
+// const useIsomorphicEffect = () => {
+//   return typeof window !== "undefined" ? useLayoutEffect : useEffect
+// }
+
+// /**
+//  * レイアウトコンポーネント
+//  * @param {LayoutProps} children
+//  * @returns {JSX.Element} レイアウトコンポーネント
+//  */
+// const Layout = ({ children }: LayoutProps) => {
+//   const inputElement = useRef(null)
+//   const isomorphicEffect = useIsomorphicEffect()
+
+//   isomorphicEffect(() => {
+//     //UA取得
+//     const ua = window.navigator.userAgent
+//     //画面の縦幅横幅取得
+//     const windowHeight = window.innerHeight
+//     const windowWidth = window.innerWidth
+
+//     const yScale = windowHeight / def.VIEW_HEIGHT
+//     const xScale = windowWidth / def.VIEW_WIDTH
+//     let minScale = xScale
+//     if (minScale > yScale) {
+//       minScale = yScale
+//     }
+//     //クラウジュとドアホンの場合はscale入れない
+//     //スマホの場合はアスペクト比そのまま
+//     //自モニタの場合はアスペクト比そのまま、左寄せ
+//     if (ua.match(def.SELF_MONITOR) || ua.match(def.HOME)) {
+//       inputElement.current.style.transform = "scale(" + minScale + ")"
+//       //左寄せにするために、横幅を計算。右からその長さを指定
+//       const nowWidth = minScale * def.VIEW_WIDTH
+//       if (nowWidth != windowWidth) {
+//         inputElement.current.style.marginRight = windowWidth - nowWidth + "px"
+//       }
+//     } else if (!ua.match(def.DOOR) && !ua.match(def.CLOUDGE)) {
+//       //ドアホンとクラウジュ以外
+//       inputElement.current.style.transform = "scale(" + minScale + ")"
+//     } else {
+//       //ドアホンとクラウジュは800*480なので、何もしない
+//     }
+//   })
+
+//   return (
+//     <div className={styles.container}>
+//       <div className={styles.page} ref={inputElement}>
+//         <div>{children}</div>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default Layout
 
 
