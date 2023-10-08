@@ -100,14 +100,25 @@ IPv4射影アドレス変換処理
 @param {string} ipv4MappedAddr IPv4射影アドレス
 @returns {string} IPv4アドレス
 */
+// export const cnvIpv4MappedAddressToIpv4Address = (ipv4MappedAddr: string): string => {
+// let ipv4Addr = "0.0.0.0"
+// if (ipaddr.IPv6.isIPv6(ipv4MappedAddr) === true) {
+// const addr = ipaddr.IPv6.parse(ipv4MappedAddr)
+// ipv4Addr = addr.toIPv4Address().toString()
+// }
+// return ipv4Addr
+// }
 export const cnvIpv4MappedAddressToIpv4Address = (ipv4MappedAddr: string): string => {
-let ipv4Addr = "0.0.0.0"
-if (ipaddr.IPv6.isIPv6(ipv4MappedAddr) === true) {
-const addr = ipaddr.IPv6.parse(ipv4MappedAddr)
-ipv4Addr = addr.toIPv4Address().toString()
-}
-return ipv4Addr
-}
+    if (ipaddr.IPv6.isIPv6(ipv4MappedAddr) === true) {
+      const addr = ipaddr.IPv6.parse(ipv4MappedAddr);
+      if (addr.isIPv4MappedAddress()) {
+        return addr.toIPv4Address().toString();
+      }
+    }
+    return ipv4MappedAddr; // IPv4マッピングアドレスでない場合は入力アドレスをそのまま返す
+  }
+
+
 // /**
 
 // デフォルトゲートウェイ IPアドレス取得
