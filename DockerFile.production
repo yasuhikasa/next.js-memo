@@ -26,7 +26,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
-COPY next-env.d.ts ./ COPY public ./public
+COPY next-env.d.ts ./ 
+COPY public ./public
 
 COPY --from=build /build/.next/standalone ./ COPY --from=build /build/.next/static ./.next/static
 
