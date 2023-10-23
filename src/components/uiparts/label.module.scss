@@ -1,0 +1,53 @@
+@mixin labelWrap($padding: 0) {
+  padding: $padding;
+  overflow: hidden;
+}
+.label {
+  display: inline-block;
+  &_wrap {
+    @include labelWrap();
+    --label-height: max-content;
+    --font-color: var(--tx-lt-sub);
+    --font-size: 18px;
+    height: var(--label-height);
+    color: var(--font-color);
+    font-size: var(--font-size);
+  }
+}
+
+@mixin elImgWrap($marginRight: 10px) {
+  width: 23px;
+  height: 23px;
+  margin-right: $marginRight;
+}
+.img {
+  display: flex;
+  align-items: center;
+  &_ico {
+    display: inline;
+    text-align: center;
+    &_wrap {
+      @include elImgWrap();
+      &_notxt {
+        @include elImgWrap(0);
+      }
+    }
+  }
+}
+
+@mixin elLabel($lineHeight: 120%) {
+  display: flex;
+  justify-content: center;
+  line-height: $lineHeight;
+  align-items: center;
+}
+@mixin elLabelWrap($padding: 0) {
+  padding: $padding;
+  align-items: center;
+}
+.item_label {
+  @include elLabel();
+  &_wrap {
+    @include elLabelWrap();
+  }
+}

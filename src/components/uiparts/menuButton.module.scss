@@ -1,0 +1,52 @@
+.button {
+  color: --tx-lt-main;
+  background-color: var(--nav-menu-background);
+  border: 1px solid var(--cont-box-shadow);
+  box-shadow: 0px 3px 6px var(--cont-box-shadow);
+  border-radius: 0px 6px 6px 0px;
+  display: inline-block;
+  cursor: pointer;
+  &_wrap {
+    overflow: hidden;
+  }
+}
+
+.link {
+  display: block;
+}
+
+.item_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_wrap {
+    padding: 9px 14px 9px 15px;
+  }
+}
+
+.item_img {
+  display: flex;
+  align-items: center;
+  &_ico {
+    display: inline;
+    text-align: center;
+    &_wrap {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.item_label {
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  white-space: nowrap;
+  &_wrap {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    margin-bottom: -2px;
+  }
+}

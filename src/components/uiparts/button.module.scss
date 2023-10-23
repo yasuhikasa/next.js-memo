@@ -1,0 +1,113 @@
+@mixin button(
+  $fontSize: 18px,
+  $color: var(--btn-font-color),
+  $bgColor: var(--common-white),
+  $border: 1px solid var(--common-outline),
+  $boxShadow: 0px 3px 6px var(--common-shadow),
+  $borderRadius: 6px,
+  $width: max-content,
+  $height: 46px
+) {
+  font-size: $fontSize;
+  color: $color;
+  background-color: $bgColor;
+  border: $border;
+  box-shadow: $boxShadow;
+  border-radius: $borderRadius;
+  display: inline-block;
+  width: $width;
+  height: $height;
+  font-weight: 400;
+}
+@mixin buttonWrap($padding: 10px 8px 10px 8px) {
+  padding: $padding;
+}
+
+.button {
+  & :active {
+    box-shadow: none;
+    position: relative;
+    top: 1px;
+  }
+}
+
+.link {
+  @include button();
+  @include buttonWrap();
+  & :active {
+    box-shadow: none;
+    position: relative;
+  }
+}
+
+.small_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include button();
+
+  &_wrap {
+    @include button();
+    @include buttonWrap();
+    & :active {
+      box-shadow: none;
+      position: relative;
+      top: 1px;
+    }
+    &_sp {
+      @include button();
+      @include buttonWrap(16px 0);
+    }
+  }
+}
+
+.list_disp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin imgWrap($marginRight: 5px) {
+  width: 24px;
+  height: 24px;
+  margin-right: $marginRight;
+}
+
+.small_img {
+  display: flex;
+  align-items: center;
+  &_ico {
+    display: inline;
+    text-align: center;
+    &_wrap {
+      @include imgWrap();
+      &_notxt {
+        @include imgWrap(0);
+      }
+    }
+  }
+}
+
+.small_label {
+  line-height: 120%;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  &_wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: -2px;
+    & :active {
+      top: 0px;
+    }
+  }
+}
+
+.disabled_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include button();
+  @include buttonWrap();
+  box-shadow: none;
+}

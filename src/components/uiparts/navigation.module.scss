@@ -1,0 +1,253 @@
+// メニューボタン
+@mixin menu_btn_base($width: $small_width) {
+  width: $width;
+  height: 46px;
+  padding: 18px 8px 0px 16px;
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+.menu_btn {
+  @include menu_btn_base;
+}
+.menu_btn_wide {
+  @include menu_btn_base($wide_width);
+}
+
+// 画面リンクボタン
+.link_btn_container {
+  width: $wide_width;
+  display: flex;
+  align-items: center;
+  height: 46px;
+  margin-bottom: 18px;
+}
+.link_btn_container_wide {
+  composes: link_btn_container;
+  cursor: pointer;
+}
+.link_btn {
+  width: $small_width;
+  padding: 0px 16px 0px 16px;
+  text-align: center;
+}
+.link_btn_wide {
+  padding: 0px 8px 0px 16px;
+  white-space: nowrap;
+}
+.link_btn_title {
+  font-size: 16px;
+  color: var(--common-text-sub);
+  padding: 0px 0px 0px 4px;
+}
+
+.ly_navi {
+  z-index: var(--navigation-z-index);
+}
+
+.ly_menu_wrap {
+  width: 0px;
+  z-index: var(--navigation-z-index);
+}
+
+@mixin lyMenu($width: $small_width) {
+  width: $width;
+  z-index: var(--navigation-z-index);
+  height: var(--base-display-height);
+  background-color: var(--nav-menu-background);
+  box-shadow: 3px 0px 6px var(--nav-menu-shadow);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+@mixin lyMenuWrap($width: $small_width) {
+  width: $small_width;
+  z-index: var(--navigation-z-index);
+  //font-size: 18px;
+}
+
+.ly_menu {
+  @include lyMenu();
+  //font-size: 18px;
+
+  &_wrap {
+    @include lyMenuWrap();
+  }
+
+  &_small {
+    @include lyMenu(0);
+
+    &_wrap {
+      @include lyMenuWrap(0);
+    }
+  }
+}
+
+.ly_menu_wide_full_cont {
+  z-index: var(--navigation-z-index);
+  background-color: var(--nav-menu-background);
+  box-shadow: 3px 0px 6px var(--nav-menu-shadow);
+  transition: all 0.2s ease;
+}
+
+.ly_menu_wide_full_cont_c {
+  position: absolute;
+}
+
+.ly_menu_wide {
+  width: $wide_width !important;
+}
+
+.ly_page_hidden {
+  width: 100%;
+  display: none;
+}
+
+// wideモード時の背景の触れないエリア。ここを触ると、ナビゲーションがアイコンだけになる
+.no_touch_area {
+  width: 800px;
+  height: 600px;
+  background-color: var(--box-nouse-background);
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+// smallモード時
+.navi {
+  display: flex;
+  margin-top: 8px;
+  z-index: var(--navigation-z-index);
+}
+
+.ly_wide_full_cont {
+  position: absolute;
+  top: 0;
+  z-index: var(--navigation-z-index);
+}
+
+.back_btn_wrap {
+  width: 80px;
+  margin-left: 8px;
+}
+
+/*
+.ly_navi {
+  z-index: var(--navigation-z-index);
+}
+
+.ly_menu_wrap {
+  width: 0px;
+  z-index: var(--navigation-z-index);
+}
+
+@mixin lyMenu($width: $small_width) {
+  width: $width;
+  z-index: var(--navigation-z-index);
+  height: 600px;
+  background-color: var(--nav-menu-background);
+  box-shadow: 3px 0px 6px var(--nav-menu-shadow);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+@mixin lyMenuWrap($width: $small_width) {
+  width: $small_width;
+  z-index: var(--navigation-z-index);
+  font-size: 18px;
+}
+.ly_menu {
+  @include lyMenu();
+  font-size: 18px;
+  &_wrap {
+    @include lyMenuWrap();
+  }
+  &_small {
+    @include lyMenu(0);
+    &_wrap {
+      @include lyMenuWrap(0);
+    }
+  }
+}
+
+.ly_menu_wide_full_cont {
+  z-index: var(--navigation-z-index);
+  background-color: var(--nav-menu-background);
+  box-shadow: 3px 0px 6px var(--nav-menu-shadow);
+  transition: all 0.2s ease;
+}
+
+.ly_menu_wide_full_cont_c {
+  position: absolute;
+}
+
+.ly_menu_wide {
+  width: $wide_width !important;
+}
+
+.ly_page {
+  width: 100%;
+}
+.ly_page_hidden {
+  width: 100%;
+  display: none;
+}
+
+.menu_btn {
+  padding: 18px 16px 81px 16px;
+}
+
+.link_btn_wrap {
+  padding: 0 16px 34px 16px;
+  text-align: left;
+}
+
+.menu_btn_wide {
+  padding: 18px 16px 81px 16px;
+}
+
+.link_btn_wide_wrap {
+  padding: 0 16px 34px 16px;
+  white-space: nowrap;
+}
+
+// wideモード時の背景の触れないエリア。ここを触ると、ナビゲーションがアイコンだけになる
+.no_touch_area {
+  width: 800px;
+  height: 600px;
+  background-color: var(--box-nouse-background);
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+// smallモード時
+.navi {
+  display: flex;
+  margin-top: 8px;
+  z-index: var(--navigation-z-index);
+}
+
+.ly_wide_full_cont {
+  position: absolute;
+  top: 0;
+  z-index: var(--navigation-z-index);
+}
+.menu_btn_wrap {
+  width: 60px;
+}
+
+.back_btn_wrap {
+  width: 80px;
+  margin-left: 8px;
+}
+
+.title {
+  font-size: 16px;
+  color: var(--common-text-sub);
+}
+
+.flex_container {
+  display: flex;
+  align-items: center;
+}
+
+*/

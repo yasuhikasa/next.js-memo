@@ -1,0 +1,112 @@
+.checkbox_input {
+  // 標準のチェックボックスを非表示にする
+  display: none;
+}
+
+.label_input {
+  color: var(--checkBox-font-color);
+  font-size: 18px;
+}
+
+.checkbox_input + .label_input {
+  position: relative;
+  padding-left: 32px;
+  margin: 11px;
+}
+
+// カスタムチェックボックスを定義
+.checkbox_input + .label_input::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  // 垂直方向に中央揃え
+  transform: translateY(-50%);
+  border: 1.5px solid var(--checkBox-border-color);
+  border-radius: 6px;
+  // マウスオーバーでカーソルを表示
+  cursor: pointer;
+  background: var(--common-white);
+}
+
+.checkbox_input:checked + .label_input::before {
+  // チェック時に背景と線の色を変更する
+  background: var(--checkBox-checked-color);
+  border: var(--checkBox-checked-color);
+}
+
+// チェック時に表示する✓を定義
+.checkbox_input:checked + .label_input::after {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 8px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
+  position: absolute;
+  // ✓の表示位置
+  top: 33%;
+  left: 9px;
+  -webkit-transform: rotate(-45deg); //古いWebkitの場合はこの指定が必要なため念のため指定する
+  transform: rotate(-45deg) translateY(-50%);
+}
+
+/* 以降はindeterminate:trueの場合のスタイル */
+// チェックボックスをハイフン表示する
+.checkbox_input_indeterminate {
+  // 標準のチェックボックスを非表示にする
+  display: none;
+}
+
+.label_input_indeterminate {
+  color: var(--checkBox-font-color);
+  font-size: 18px;
+}
+
+.checkbox_input_indeterminate + .label_input_indeterminate {
+  position: relative;
+  padding-left: 32px;
+  margin: 11px;
+}
+
+// カスタムチェックボックスを定義
+.checkbox_input_indeterminate + .label_input_indeterminate::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  // 垂直方向に中央揃え
+  border: 1.5px solid var(--checkBox-border-color);
+  border-radius: 6px;
+  // マウスオーバーでカーソルを表示
+  cursor: pointer;
+  background: var(--common-white);
+}
+
+.checkbox_input_indeterminate:checked + .label_input_indeterminate::before {
+  // チェック時に背景と線の色を変更する
+  background: var(--checkBox-checked-color);
+  border: var(--checkBox-checked-color);
+}
+
+// チェック時に表示するハイフンを定義
+.checkbox_input_indeterminate:checked + .label_input_indeterminate::after {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 8px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #fff;
+  position: absolute;
+  // ハイフンの表示位置
+  top: 10%;
+  left: 5px;
+}

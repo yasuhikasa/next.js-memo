@@ -1,0 +1,62 @@
+.tab_box {
+  width: 180px;
+  height: 46px;
+  margin-bottom: 1px;
+  background-color: var(--common-white);
+  vertical-align: middle;
+  display: inline-flex;
+}
+.tab_icon {
+  text-align: center;
+}
+
+// タブクリック時の色変更
+@mixin item_tab_layout {
+  width: 100%;
+  vertical-align: middle;
+  display: inline-flex;
+}
+.item_tab {
+  line-height: 120%;
+  &_wrap {
+    @include item_tab_layout;
+    &_selected {
+      --selected-boder-color: var(--common-main);
+      border-right: solid 8px var(--selected-boder-color);
+      --selected-background: var(--common-light);
+      background: var(--selected-background);
+      height: 100%;
+      @include item_tab_layout;
+    }
+  }
+}
+
+// タブタイトルのスタイル
+.tab_title {
+  &_wrap {
+    --font-size: 18px;
+    font-size: var(--font-size);
+    --font-color: var(--common-text-sub);
+    color: var(--font-color);
+    text-align: left;
+    margin-left: 8px;
+    font-weight: 400;
+    line-height: 22px;
+    &_selected {
+      --selected-font-color: var(--common-main);
+      color: var(--selected-font-color);
+      --font-size: 18px;
+      font-size: var(--font-size);
+      margin-left: 8px;
+      text-align: left;
+    }
+  }
+}
+
+.tab_unit {
+  box-shadow: 0px 3px 6px 0px rgb(0, 0, 0, 0.16);
+  position: relative;
+  width: 180px;
+  overflow: hidden;
+  border-radius: 12px;
+}

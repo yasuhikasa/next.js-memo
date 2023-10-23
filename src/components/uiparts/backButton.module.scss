@@ -1,0 +1,66 @@
+.button_parent {
+  width: 80px;
+  & :active {
+    box-shadow: none;
+    position: relative;
+    top: 1px;
+  }
+}
+
+.button {
+  color: var(--btn-font-color);
+  background-color: var(--common-white);
+  border: 1px solid var(--common-outline);
+  box-shadow: 0px 3px 6px var(--common-shadow);
+  border-radius: 6px;
+  width: 80px;
+  height: 46px;
+  cursor: pointer;
+  & :active {
+    box-shadow: none;
+    position: relative;
+    top: 1px;
+  }
+  &_wrap {
+    overflow: hidden;
+  }
+}
+
+.link {
+  display: block;
+}
+
+.small_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_wrap {
+    padding: 10px 8px 10px 8px;
+  }
+}
+
+.small_img {
+  display: flex;
+  align-items: center;
+  &_icon {
+    display: inline;
+    text-align: center;
+    &_wrap {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.small_label {
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  white-space: nowrap;
+  &_wrap {
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    margin-bottom: -4px;
+  }
+}

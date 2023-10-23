@@ -1,0 +1,48 @@
+// タブ（共通）
+.tabUnit_wrap {
+  padding: 10px;
+}
+.tabUnit {
+  --tab-height: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: var(--tab-btn-background);
+  border-radius: 6px;
+  padding: 3px;
+  height: var(--tab-height);
+}
+.tab_wrap {
+  margin: 6px 0;
+}
+.tab {
+  width: var(--btn-width);
+  text-align: center;
+}
+
+@mixin item_tab_layout() {
+  display: inline-block;
+  width: 98%;
+  height: 98%;
+}
+
+// タブ
+.item_tab {
+  --font-size: 18px;
+  font-size: var(--font-size);
+  line-height: 120%;
+  color: var(--tx-lt-main);
+  &_wrap {
+    margin: 3px 0;
+    padding: 6px 0 4px;
+    @include item_tab_layout();
+    &_active {
+      --btn-color: #ffffff;
+      padding: 9px 0 7px;
+      background: var(--btn-color);
+      box-shadow: 0px 3px 6px var(--tab-btn-shadow);
+      border-radius: 6px;
+      @include item_tab_layout();
+    }
+  }
+}

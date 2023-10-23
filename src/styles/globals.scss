@@ -1,0 +1,325 @@
+// html,
+// body,
+// div,
+// span,
+// applet,
+// object,
+// iframe,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// blockquote,
+// pre,
+// a,
+// abbr,
+// acronym,
+// address,
+// big,
+// cite,
+// code,
+// del,
+// dfn,
+// em,
+// img,
+// ins,
+// kbd,
+// q,
+// s,
+// samp,
+// small,
+// strike,
+// strong,
+// sub,
+// sup,
+// tt,
+// var,
+// b,
+// u,
+// i,
+// center,
+// dl,
+// dt,
+// dd,
+// ol,
+// ul,
+// li,
+// fieldset,
+// form,
+// label,
+// legend,
+// table,
+// caption,
+// tbody,
+// tfoot,
+// thead,
+// tr,
+// th,
+// td,
+// article,
+// aside,
+// canvas,
+// details,
+// embed,
+// figure,
+// figcaption,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// output,
+// ruby,
+// section,
+// summary,
+// time,
+// mark,
+// audio,
+// video {
+//   margin: 0;
+//   padding: 0;
+//   border: 0;
+//   font-size: 100%;
+//   font: inherit;
+//   vertical-align: baseline;
+// }
+// /* HTML5 display-role reset for older browsers */
+// article,
+// aside,
+// details,
+// figcaption,
+// figure,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// section {
+//   display: block;
+// }
+// body {
+//   line-height: 1;
+// }
+// ol,
+// ul {
+//   list-style: none;
+// }
+// blockquote,
+// q {
+//   quotes: none;
+// }
+// blockquote:before,
+// blockquote:after,
+// q:before,
+// q:after {
+//   content: "";
+//   content: none;
+// }
+// table {
+//   border-collapse: collapse;
+//   border-spacing: 0;
+// }
+// button {
+//   width: 100%;
+//   background: none;
+//   border: none;
+//   outline: none;
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   appearance: none;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// /* ここからユーザー定義 */
+
+// // カスタムプロパティ
+// :root {
+//   // 共通
+//   --common-white: #ffffff;
+//   --common-shadow: rgba(0, 0, 0, 0.16);
+//   --common-outline: #e6e6e6;
+//   --common-main: #478549;
+//   --common-light: #f0f5f0;
+//   --page-background: #f2f2f2;
+//   --common-text-main: #1a1a1a;
+//   --common-text-sub: #666666;
+
+//   // Button
+//   --btn-font-color: rgba(0, 0, 0, 0.9);
+
+//   // CheckBox
+//   --checkBox-font-color: #1a1a1a;
+//   --checkBox-border-color: #333333;
+//   --checkBox-checked-color: var(--common-main);
+
+//   // --------------------------
+//   // 以降は整理中
+//   --main-food-fd-02: #478549;
+//   --global-body-background: #3c3c3d;
+//   --global-body-color: #515151;
+//   --tx-lt-main: rgba(0, 0, 0, 0.9);
+//   --tx-lt-sub: rgba(0, 0, 0, 0.6);
+//   --tx-lt-da: rgba(0, 0, 0, 0.3);
+//   --layout-page-background: #f3f4f6;
+//   --cont-main-background: #f3f3f3;
+//   --nav-menu-background: #fff;
+//   --nav-menu-select-background: #f0f5f0;
+//   --nav-menu-border: rgba(0, 0, 0, 0.2);
+//   --nav-menu-shadow: rgba(0, 0, 0, 0.25);
+//   --cont-box-shadow: rgba(0, 0, 0, 0.16);
+//   --hidden-color: rgba(0, 0, 0, 0);
+//   --btn-background: #fff;
+//   --btn-border: rgba(0, 0, 0, 0.04);
+//   --graph-background: #eee;
+//   --label-color: #000000;
+//   --box-background: #fff;
+//   --energy-cont-border: #edf5a3;
+//   --generation-color: #997300;
+//   --generation-border-color: #997300;
+//   --charge-color: #519108;
+//   --charge-border-color: #519108;
+//   --buying-color: #cc5500;
+//   --buying-border-color: #cc5500;
+//   --usage-color: #0063cc;
+//   --usage-border-color: #0063cc;
+//   --energy-night-color: rgba(255, 255, 255, 0.9);
+//   --energy-tab-background: #f2f2f2;
+//   --tab-btn-background: #d6d6d6;
+//   --tab-btn-shadow: rgba(0, 0, 0, 0.16);
+//   --box-nouse-background: rgba(0, 0, 0, 0.6); //使用出来ない領域を表す。薄いグレイで使用出来ないことを表す
+//   --scroll-background: #e4e4e4;
+//   --scroll-bar-background: #c8c8c8;
+//   --z-index-navigation: 100; //ナビゲーションのページ(重なりの順番。数字が大きいほど上にいく)
+//   --z-index-header: 90; //ヘッダー(ナビゲーションの次に上位)
+//   --z-index-content: 10; //コンテンツ関連
+//   --z-index-content2: 20; //コンテンツ関連2
+//   --z-index-border: 5; //ボーダー用z-index(重なりの順番が最も最小を想定)
+//   --z-index-background: 1; //背景画像用z-index(重なりの順番が最も最小を想定)
+//   --error-color: #000000;
+//   --btn-width: max-content;
+//   --btn-height: max-content;
+//   --common-size: 18px;
+//   --cont-btn-border: rgba(0, 0, 0, 0.16);
+//   --letter-color: #ffffff;
+//   --checkbox-content: "";
+
+//   // スマホ用
+//   --btn-sm-color: #364563;
+//   --btn-sm-background: #ffffff;
+//   --btn-sm-shadow: rgba(0, 0, 0, 0.08);
+//   --btn-sm-submit-color: rgba(255, 255, 255, 0.9);
+//   --btn-sm-submit-background: #366337;
+//   --btn-sm-submit-shadow: rgba(0, 0, 0, 0.16);
+//   --global-body-sm-color: rgba(0, 0, 0, 0.6);
+//   --nav-menu-sm-background: #f2f2f2;
+//   --nav-menu-sm-active-color: #366337;
+//   --layout-sm-page-background: #f2f2f2;
+//   --title-descriptions-color: rgba(0, 0, 0, 0.6);
+// }
+
+// @font-face {
+//   font-family: "NotoSansJP-VariableFont_wght";
+//   src: url(/font/NotoSansJP-VariableFont_wght.ttf);
+// }
+
+// @font-face {
+//   font-family: "Noto Sans";
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url(/font/NotoSansJP-Regular.otf) format("opentype");
+// }
+
+// html,
+// body,
+// div,
+// span,
+// object,
+// iframe,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// blockquote,
+// pre,
+// abbr,
+// address,
+// cite,
+// code,
+// del,
+// dfn,
+// em,
+// img,
+// ins,
+// kbd,
+// q,
+// samp,
+// small,
+// strong,
+// sub,
+// sup,
+// var,
+// b,
+// i,
+// dl,
+// dt,
+// dd,
+// ol,
+// ul,
+// li,
+// fieldset,
+// form,
+// label,
+// legend,
+// table,
+// caption,
+// tbody,
+// tfoot,
+// thead,
+// tr,
+// th,
+// td,
+// article,
+// aside,
+// canvas,
+// details,
+// figcaption,
+// figure,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// section,
+// summary,
+// time,
+// mark,
+// audio,
+// video,
+// button {
+//   font-family: "NotoSansJP-VariableFont_wght";
+// }
+
+// /* 背景色及び文字色を指定 */
+// body {
+//   background-color: var(--global-body-background);
+//   color: var(--global-body-color);
+// }
+
+// /* aタグ初期化 */
+// a {
+//   font-weight: normal;
+//   text-decoration: none;
+//   color: var(--tx-lt-main);
+// }
+
+// /* box-sizing設定 */
+// * {
+//   box-sizing: border-box;
+// }

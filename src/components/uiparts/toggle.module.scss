@@ -1,0 +1,71 @@
+.toggleLabel {
+  --toggle-width: 120px;
+  --font-size: 18px;
+  --font-color: var(--tx-lt-sub);
+  display: flex;
+  justify-content: space-evenly;
+  width: var(--toggle-width);
+  color: var(--font-color);
+  font-size: var(--font-size);
+}
+.on_off_label {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.switch {
+  display: inline-block;
+  width: 60px;
+  height: 32px;
+  position: relative;
+}
+
+.toggle_thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-food-fd-02);
+  border-radius: 40px;
+}
+//
+.toggle_thumb ::before {
+  content: "";
+  height: 28px;
+  width: 28px;
+  position: absolute;
+  left: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.4s all ease;
+}
+.inside_on_label {
+  //color: var(--letter-color);
+  margin-left: -8%;
+}
+.inside_off_label {
+  //color:var(--letter-color);
+  margin-right: 15%;
+}
+//checkbox
+.checkbox {
+  display: none;
+}
+
+.checkbox:checked + .toggle_thumb ::before {
+  transform: translateX(28px);
+}
+
+//非活性
+.disabled {
+  box-sizing: content-box;
+  background-color: gray;
+  opacity: 0.5;
+  z-index: 5;
+  box-shadow: none;
+}

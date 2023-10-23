@@ -1,0 +1,94 @@
+.pullDownUnit_wrap_active,
+.pullDownUnit_wrap_inActive {
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 10% 10%;
+  margin-left: -10%;
+  z-index: 100;
+}
+
+.pullDownUnit {
+  background-color: var(--nav-menu-background);
+  border-radius: 0px 0px 6px 6px;
+  overflow: hidden;
+  box-shadow: 0px 3px 6px var(--cont-box-shadow);
+}
+
+// 表示非表示制御
+.pullDownUnit_wrap_active .pullDownUnit {
+  display: block;
+  animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+.pullDownUnit_wrap_inActive .pullDownUnit {
+  display: none;
+  animation: slideOut 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+// TODO:非アクティブのアニメーションは不要？
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
+}
+
+// プルダウンボタンのselect時の制御
+@mixin tabSelectStyle($inSelectBorder: 4px solid var(--hidden-color), $inSelectBg: --nav-menu-background) {
+  border-right: $inSelectBorder;
+  background: var($inSelectBg);
+}
+.pullDown_wrap,
+.pullDown_wrap_select {
+  padding: 1.5% 0 1.5% 1.5%;
+  border-bottom: 0.5px solid var(--nav-menu-border);
+}
+.pullDown_wrap:last-child,
+.pullDown_wrap_select:last-child {
+  border-bottom: none;
+}
+.pullDown_wrap {
+  @include tabSelectStyle();
+}
+.pullDown_wrap_select {
+  @include tabSelectStyle(4px solid var(--main-food-fd-02), --nav-menu-select-background);
+}
+
+.pullDown {
+  text-align: center;
+}
+
+.item_PullDown_wrap {
+  padding: 6% 0 6% 14%;
+}
+
+// プルダウンボタンのselect時の制御(文字色)
+@mixin tabSelectFontColor($inSelectColor: --tx-lt-sub) {
+  color: var($inSelectColor);
+}
+.item_PullDown {
+  display: block;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: left;
+}
+.pullDown_wrap .item_PullDown {
+  @include tabSelectFontColor();
+}
+.pullDown_wrap_select .item_PullDown {
+  @include tabSelectFontColor(--main-food-fd-02);
+}

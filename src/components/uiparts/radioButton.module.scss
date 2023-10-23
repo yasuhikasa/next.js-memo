@@ -1,0 +1,53 @@
+.radio {
+  display: flex;
+}
+
+.radio_input {
+  display: none;
+  /*デフォルトのチェックボックスを非表示にする*/
+}
+
+.radio_input + .radio_label {
+  --back-color: #ffffff;
+  --font-size: 18px;
+  --radio-padding: 11px;
+  position: relative;
+  padding-left: 26px;
+  margin: var(--radio-padding);
+  /*ラジオボタン分の隙間を作る*/
+  /*文字色・文字サイズ*/
+  color: var(--tx-lt-sub);
+  font-size: var(--font-size);
+}
+
+.radio_input + .radio_label::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  /*中央ぞろえにする*/
+  border: 1px solid var(--main-food-fd-02);
+  border-radius: 50%;
+  cursor: pointer;
+  /*ポインターを表示する*/
+  background-color: var(--letter-color);
+}
+
+.radio_input:checked + .radio_label::after {
+  /*チェックの○をつくる*/
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: var(--main-food-fd-02);
+  position: absolute;
+  /*ここから下は位置を調整する*/
+  top: 5%;
+  left: 5px;
+}
