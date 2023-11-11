@@ -6,6 +6,7 @@ const Warmup: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
   const urls: string[] = [
+    '/page/common',
     '/page1',
     '/page2',
     // ... その他のURL
@@ -25,13 +26,12 @@ const Warmup: React.FC = () => {
       // iframe.style.display = 'none'; // iframeを非表示に
       iframe.src = url;
       iframe.onload = () => {
-        setTimeout(() => {
-          if (currentIndex < urls.length - 1) {
-            setCurrentIndex(currentIndex + 1);
-          } else {
-            router.push('/wait-screen' + '?warmup=true'); // クローリング終了後の待機画面へ遷移
-          }
-        }, 100); // 次のページへの遷移に100msの遲延を設ける
+        if (currentIndex < urls.length - 1) {
+          setTimeout(() => setCurrentIndex(currentIndex + 1), 100);
+        } else {
+          // ウォームアッププロセスの終了後にページ遷移
+          router.push('/page/common/0g?warmup=true');
+        }
       };
       document.body.appendChild(iframe);
     };
