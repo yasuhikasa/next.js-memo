@@ -54,7 +54,7 @@ const Warmup: React.FC = () => {
       // ウォームアッププロセスの終了後にページ遷移
       router.push('/page/common/0g?warmup=true');
     }
-  }, [currentIndex, isWarmupReady, urls, router]);
+  }, [currentIndex, isWarmupReady]);
 
   // モニタ表示領域は黒画面を表示
   return (
@@ -131,7 +131,7 @@ export default Warmup;
 //       // ウォームアッププロセスの終了後にページ遷移
 //       router.push('/page/common/0g?warmup=true');
 //     }
-//   }, [currentIndex, isWarmupReady, urls, router]);
+//   }, [currentIndex, isWarmupReady]);
 
 //   // モニタ表示領域は黒画面を表示
 //   return (

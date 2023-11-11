@@ -39,7 +39,7 @@ const Warmup: React.FC = () => {
     if (urls[currentIndex]) {
       loadPage(urls[currentIndex]);
     }
-  }, [currentIndex, urls, router]);
+  }, [currentIndex]);
 
 // モニタ表示領域は黒画面を表示
 return (
@@ -101,7 +101,7 @@ export default Warmup;
 //       // ウォームアッププロセスの終了後にページ遷移
 //       router.push('/page/common/0g?warmup=true');
 //     }
-//   }, [currentIndex, retryCount, urls, router]);
+//   }, [currentIndex, retryCount]);
 
 //   // モニタ表示領域は黒画面を表示
 //   return (
@@ -113,3 +113,65 @@ export default Warmup;
 
 // export default Warmup;
 
+
+
+
+
+
+// 別のコードパターン
+// // pages/warmup.tsx
+// import React, { useEffect } from 'react';
+// import { useRouter } from 'next/router';
+
+// const Warmup = () => {
+//   const router = useRouter();
+//   const urls = [
+//     '/page/common/0g?warmup=start', // ウォームアップの開始リクエスト
+//     '/page1',
+//     '/page2',
+//     // ... その他のURL
+//   ];
+
+//   useEffect(() => {
+//     let loadedCount = 0;
+//     const maxRetries = 3; // 最大リトライ回数
+
+//     const loadPage = (url, retries = 0) => {
+//       const iframe = document.createElement('iframe');
+//       iframe.style.position = 'absolute';
+//       iframe.style.width = '800px';
+//       iframe.style.height = '480px';
+//       iframe.style.opacity = '0';
+//       iframe.style.top = '500px';
+//       iframe.style.left = '0px';
+//       iframe.src = url;
+
+//       iframe.onload = () => {
+//         loadedCount++;
+//         if (loadedCount === urls.length) {
+//           // ウォームアッププロセスの終了後にページ遷移
+//           router.push('/page/common/0g?warmup=true');
+//         }
+//       };
+
+//       iframe.onerror = () => {
+//         if (retries < maxRetries) {
+//           console.log(`Retrying ${url}, attempt ${retries + 1}`);
+//           setTimeout(() => loadPage(url, retries + 1), 1000);
+//         }
+//       };
+
+//       document.body.appendChild(iframe);
+//     };
+
+//     urls.forEach(url => loadPage(url));
+//   }, []);
+
+//   return (
+//     <div style={{ backgroundColor: 'black', height: '100vh', width: '100vw' }}>
+//       {/* 黒画面 */}
+//     </div>
+//   );
+// };
+
+// export default Warmup;
