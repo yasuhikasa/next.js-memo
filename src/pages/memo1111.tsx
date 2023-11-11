@@ -54,35 +54,62 @@ export default Warmup;
 
 // ロード失敗時の再試行を実装する例
 
-// useEffect(() => {
-//   const iframe = document.createElement('iframe');
-//   // ... iframeのスタイル設定 ...
+// // pages/warmup.tsx
+// import React, { useEffect, useState } from 'react';
+// import { useRouter } from 'next/router';
 
-//   const loadPage = (url: string, retryCount: number = 0) => {
+// const Warmup: React.FC = () => {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [retryCount, setRetryCount] = useState(0); // リトライカウントを追加
+//   const router = useRouter();
+//   const urls: string[] = [
+//     '/page/common/0g?warmup=start', // ウォームアップの開始リクエスト
+//     '/page1',
+//     '/page2',
+//     // ... その他のURL
+//   ];
+
+//   const loadPage = (url: string, retry: number) => {
+//     const iframe = document.createElement('iframe');
+//     iframe.style.position = 'absolute';
+//     iframe.style.width = '800px';
+//     iframe.style.height = '480px';
+//     iframe.style.opacity = '0';
+//     iframe.style.top = '500px';
+//     iframe.style.left = '0px';
 //     iframe.src = url;
+
 //     iframe.onload = () => {
-//       setTimeout(() => {
-//         if (currentIndex < urls.length - 1) {
-//           setCurrentIndex(currentIndex + 1);
-//         } else {
-//           router.push('/wait-screen' + '?warmup=true');
-//         }
-//       }, 100);
+//       setRetryCount(0); // 成功したのでリトライカウントをリセット
+//       setTimeout(() => setCurrentIndex(currentIndex + 1), 100);
 //     };
 
 //     iframe.onerror = () => {
-//       if (retryCount < 3) { // 最大3回までリトライ
-//         setTimeout(() => loadPage(url, retryCount + 1), 500); // 500ms後に再試行
+//       if (retry < 3) { // 最大3回までリトライ
+//         setRetryCount(retry + 1);
+//         setTimeout(() => loadPage(url, retry + 1), 1000); // 1秒後に再試行
 //       }
 //     };
+
+//     document.body.appendChild(iframe);
 //   };
 
-//   if (urls[currentIndex]) {
-//     loadPage(urls[currentIndex]);
-//   }
+//   useEffect(() => {
+//     if (urls[currentIndex]) {
+//       loadPage(urls[currentIndex], retryCount);
+//     } else if (currentIndex >= urls.length) {
+//       // ウォームアッププロセスの終了後にページ遷移
+//       router.push('/page/common/0g?warmup=true');
+//     }
+//   }, [currentIndex, retryCount, urls, router]);
 
-//   document.body.appendChild(iframe);
-//   return () => {
-//     document.body.removeChild(iframe);
-//   };
-// }, [currentIndex, urls, router]);
+//   // モニタ表示領域は黒画面を表示
+//   return (
+//     <div style={{ backgroundColor: 'black', height: '100vh', width: '100vw' }}>
+//       {/* 黒画面 */}
+//     </div>
+//   );
+// };
+
+// export default Warmup;
+
