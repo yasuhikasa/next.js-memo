@@ -50,3 +50,39 @@ return (
 };
 
 export default Warmup;
+
+
+// ロード失敗時の再試行を実装する例
+
+// useEffect(() => {
+//   const iframe = document.createElement('iframe');
+//   // ... iframeのスタイル設定 ...
+
+//   const loadPage = (url: string, retryCount: number = 0) => {
+//     iframe.src = url;
+//     iframe.onload = () => {
+//       setTimeout(() => {
+//         if (currentIndex < urls.length - 1) {
+//           setCurrentIndex(currentIndex + 1);
+//         } else {
+//           router.push('/wait-screen' + '?warmup=true');
+//         }
+//       }, 100);
+//     };
+
+//     iframe.onerror = () => {
+//       if (retryCount < 3) { // 最大3回までリトライ
+//         setTimeout(() => loadPage(url, retryCount + 1), 500); // 500ms後に再試行
+//       }
+//     };
+//   };
+
+//   if (urls[currentIndex]) {
+//     loadPage(urls[currentIndex]);
+//   }
+
+//   document.body.appendChild(iframe);
+//   return () => {
+//     document.body.removeChild(iframe);
+//   };
+// }, [currentIndex, urls, router]);
