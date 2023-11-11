@@ -48,6 +48,7 @@ return (
   </div>
   );
 };
+// もしくは画面部分はreturn null;
 
 export default Warmup;
 
