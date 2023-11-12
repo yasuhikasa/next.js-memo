@@ -231,3 +231,52 @@ export default Warmup;
 // };
 
 // export default Warmup;
+
+
+// もう一つ追加
+
+// import React, { useEffect, useState } from 'react';
+// import { useRouter } from 'next/router';
+
+// const Warmup = () => {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const router = useRouter();
+//   const urls = [
+//     'http://localhost:3000/search/users',
+//     // ... その他のURL
+//   ];
+
+//   useEffect(() => {
+//     // iframe の作成と追加は useEffect 内で行う
+//     const iframe = document.createElement('iframe');
+//     iframe.style.position = 'absolute';
+//     iframe.style.width = '800px';
+//     iframe.style.height = '480px';
+//     iframe.style.opacity = '0';
+//     iframe.style.top = '500px';
+//     iframe.style.left = '0px';
+//     document.body.appendChild(iframe);
+
+//     const currentUrl = urls[currentIndex];
+//     if (currentUrl) {
+//       iframe.src = currentUrl;
+//       iframe.onload = () => {
+//         if (currentIndex < urls.length - 1) {
+//           setTimeout(() => setCurrentIndex(currentIndex + 1), 100);
+//         } else {
+//           // ウォームアッププロセスの終了後の処理
+//           // router.push('/page/common/0g?warmup=true'); (必要に応じて)
+//         }
+//       };
+//     }
+
+//     // コンポーネントのアンマウント時に iframe を削除
+//     return () => {
+//       iframe.remove();
+//     };
+//   }, [currentIndex, urls]);
+
+//   return null; // または任意の UI
+// };
+
+// export default Warmup;
