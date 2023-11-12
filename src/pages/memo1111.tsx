@@ -280,3 +280,45 @@ export default Warmup;
 // };
 
 // export default Warmup;
+
+
+// さらに追加
+// import React, { useEffect, useState } from 'react';
+
+// const Warmup: React.FC = () => {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const urls: string[] = [
+//     'http://localhost:3000/search/users',
+//     // ... その他のURL
+//   ];
+
+//   useEffect(() => {
+//     const iframe = document.createElement('iframe');
+//     iframe.style.position = 'absolute';
+//     iframe.style.width = '800px';   // 幅を800pxに設定
+//     iframe.style.height = '480px';  // 高さを480pxに設定
+//     iframe.style.opacity = '0';     // 透明に設定
+//     iframe.style.top = '500px';     // 上から500pxの位置
+//     iframe.style.left = '0px';      // 左端から0pxの位置
+//     document.body.appendChild(iframe);
+
+//     const loadPage = () => {
+//       if (currentIndex < urls.length) {
+//         iframe.src = urls[currentIndex];
+//       }
+//     };
+
+//     iframe.onload = () => {
+//       if (currentIndex < urls.length - 1) {
+//         setCurrentIndex(currentIndex + 1);
+//       }
+//     };
+
+//     loadPage();
+//   }, [currentIndex]);
+
+//   return null;
+// };
+
+// export default Warmup;
+
