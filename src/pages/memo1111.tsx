@@ -176,3 +176,58 @@ export default Warmup;
 // };
 
 // export default Warmup;
+
+
+
+// ページが２度レンダリングされる・・・
+// import React, { useEffect, useState } from 'react';
+// import { useRouter } from 'next/router';
+
+// const Warmup = () => {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const router = useRouter();
+//   const urls = [
+//     'http://localhost:3000/search/users',
+//     // ... その他のURL
+//   ];
+
+//   useEffect(() => {
+//     // iframe の作成と追加は useEffect 内で行う
+//     const iframe = document.createElement('iframe');
+//     iframe.style.position = 'absolute';
+//     iframe.style.width = '800px';
+//     iframe.style.height = '480px';
+//     iframe.style.opacity = '0';
+//     iframe.style.top = '500px';
+//     iframe.style.left = '0px';
+//     document.body.appendChild(iframe);
+  
+//     // 初回のURLのロード
+//     if (urls.length > 0) {
+//       iframe.src = urls[0];
+//     }
+  
+//     iframe.onload = () => {
+//       const nextIndex = currentIndex + 1;
+//       if (nextIndex < urls.length) {
+//         setTimeout(() => {
+//           setCurrentIndex(nextIndex);
+//           iframe.src = urls[nextIndex];
+//         }, 100);
+//       } else {
+//         // ウォームアッププロセスの終了後の処理
+//         // router.push('/page/common/0g?warmup=true'); (必要に応じて)
+//       }
+//     };
+  
+//     // コンポーネントのアンマウント時に iframe を削除
+//     return () => {
+//       iframe.remove();
+//     };
+//   }, []); // 依存配列を空にする
+  
+
+//   return null; // または任意の UI
+// };
+
+// export default Warmup;
