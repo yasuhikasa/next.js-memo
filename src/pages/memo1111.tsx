@@ -13,29 +13,19 @@ const Warmup: React.FC = () => {
   ];
 
   useEffect(() => {
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'absolute';
-    iframe.style.width = '800px';   // 幅を800pxに設定
-    iframe.style.height = '480px';  // 高さを480pxに設定
-    iframe.style.opacity = '0';     // 透明に設定
-    iframe.style.top = '500px';     // 上から500pxの位置
-    iframe.style.left = '0px';      // 左端から0pxの位置
 
     const loadPage = (url: string) => {
-      // const iframe = document.createElement('iframe');
-      // iframe.style.display = 'none'; // iframeを非表示に
+      const iframe = document.getElementById('iframe') as HTMLIFrameElement;
       iframe.src = url;
       iframe.onload = () => {
         if (currentIndex < urls.length - 1) {
-          setTimeout(() => setCurrentIndex(currentIndex + 1), 100);
+          setTimeout(() => setCurrentIndex(prev => prev + 1), 100);
         } else {
           // ウォームアッププロセスの終了後にページ遷移
           router.push('/page/common/0g?warmup=true');
         }
       };
-      document.body.appendChild(iframe);
     };
-
     if (urls[currentIndex]) {
       loadPage(urls[currentIndex]);
     }
@@ -44,11 +34,10 @@ const Warmup: React.FC = () => {
 // モニタ表示領域は黒画面を表示
 return (
   <div style={{ backgroundColor: 'black', height: '100vh', width: '100vw' }}>
-    {/* 黒画面 */}
+    <iframe id="iframe" style={{ display: 'none' }} />
   </div>
   );
 };
-// もしくは画面部分はreturn null;
 
 export default Warmup;
 
