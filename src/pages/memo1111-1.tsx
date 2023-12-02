@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 
-const Warmup: React.FC = () => {
+const Warmup: NextPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isWarmupReady, setIsWarmupReady] = useState(false);
   const router = useRouter();

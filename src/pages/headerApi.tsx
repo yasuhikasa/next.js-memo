@@ -42,14 +42,14 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext, NextPage } from 'next';
 
 type Props = {
   customHeader: string | null;
   error: string | null;
 };
 
-const IndexPage: React.FC<Props> = ({ customHeader, error }) => {
+const IndexPage: NextPage<Props> = ({ customHeader, error }) => {
   const router = useRouter();
 
   useEffect(() => {

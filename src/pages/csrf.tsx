@@ -1,10 +1,11 @@
+import { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 
 interface HomeProps {
   initialCsrfToken: string;
 }
 
-const Home: React.FC<HomeProps> = ({ initialCsrfToken }) => {
+const Home: NextPage<HomeProps> = ({ initialCsrfToken }) => {
   const [csrfToken, setCsrfToken] = useState<string>(initialCsrfToken);
 
   useEffect(() => {

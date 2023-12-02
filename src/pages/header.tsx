@@ -26,8 +26,9 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 
-const IndexPage: React.FC = () => {
+const IndexPage: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {

@@ -1,8 +1,9 @@
 // pages/warmup.tsx
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 
-const Warmup: React.FC = () => {
+const Warmup: NextPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
   const urls: string[] = [

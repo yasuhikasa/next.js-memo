@@ -50,8 +50,9 @@
 
 // pages/index.tsx
 import { getClientIp, isLocalhost } from '@/pages/utils/localhost';
+import { NextPage } from 'next';
 
-const HomePage = ({ ip, isLocal }: { ip: string; isLocal: boolean }) => {
+const HomePage:NextPage = ({ ip, isLocal }: { ip: string; isLocal: boolean }) => {
   return (
     <div>
       <p>クライアントのIPアドレス: {ip}</p>
