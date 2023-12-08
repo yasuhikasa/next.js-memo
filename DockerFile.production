@@ -5,7 +5,9 @@ WORKDIR /build
 
 COPY package*.json ./ RUN npm ci
 
-COPY . . RUN npm run production_build
+COPY . .
+
+RUN npm run production_build
 
 # Package install Stage
 FROM node:16-alpine3.18 AS module
